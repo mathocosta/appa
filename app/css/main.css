@@ -1,0 +1,23 @@
+@import url(bulma.css);
+@font-face {
+  font-family: Roboto;
+  src: url("./fonts/roboto-regular.woff");
+  font-weight: 400; }
+
+body {
+  font-size: 62.5%;
+  font-family: Roboto, sans-serif;
+  padding: 1rem .5rem; }
+
+html,
+body {
+  height: 100%; }
+
+#editor {
+  height: 100%; }
+
+textarea {
+  height: 100%; }
+
+code {
+  font-family: Code New Roman; }
