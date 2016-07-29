@@ -20,7 +20,7 @@ app.on('ready', () => {
 app.on('window-all-close', () => app.quit())
 
 // TODO: needs a refactoring
-ipcMain.on('salvar-novo', function (ev, data) {
+ipcMain.on('salvar-novo', (ev, data) => {
   dialog.showSaveDialog({
     filters: [
       {name: 'text', extensions: ['txt']},
@@ -33,7 +33,7 @@ ipcMain.on('salvar-novo', function (ev, data) {
   })
 })
 
-ipcMain.on('salvar-existente', function (ev, data) {
+ipcMain.on('salvar-existente', (ev, data) => {
   if (globalPath !== undefined) {
     writeFile(globalPath, data)
   } else {
@@ -41,11 +41,9 @@ ipcMain.on('salvar-existente', function (ev, data) {
   }
 })
 
-ipcMain.on('atualizar-globalPath', function (ev, path) {
-  globalPath = path
-})
+ipcMain.on('atualizar-globalPath', (ev, path) => globalPath = path)
 
-ipcMain.on('open-preview', function (ev, data) {
+ipcMain.on('open-preview', (ev, data) => {
   let preview = new BrowserWindow({
     width: 500,
     height: 500

@@ -7,7 +7,7 @@ var menu = [{
     {
       label: 'Open File',
       accelerator: 'CmdOrCtrl + O',
-      click: function () {
+      click: function (menuItem, focusedWindow) {
         dialog.showOpenDialog({
           properties: ['openFile'],
           filters: [{
@@ -15,14 +15,12 @@ var menu = [{
             extensions: ['md', 'txt']
           }]
         }, (file) => {
-          if (file === 'undefined') {
-            console.log('arquivo nao encontrado')
-          } else {
+          if (file) {
             fs.readFile(file[0], 'utf8', (err, data) => {
               if (err) {
                 throw err
               } else {
-                BrowserWindow.getFocusedWindow().webContents.send('arquivo-aberto', file[0], data)
+                focusedWindow.webContents.send('arquivo-aberto', file[0], data)
               }
             })
           }
@@ -32,14 +30,14 @@ var menu = [{
     {
       label: 'Save',
       accelerator: 'CmdOrCtrl + S',
-      click: function () {
-        BrowserWindow.getFocusedWindow().webContents.send('salvar')
+      click: function (menuItem, focusedWindow) {
+        focusedWindow.webContents.send('salvar')
       }
     },
     {
       label: 'Save As',
-      click: function () {
-        BrowserWindow.getFocusedWindow().webContents.send('salvar-como')
+      click: function (menuItem, focusedWindow) {
+        focusedWindow.webContents.send('salvar-como')
       }
     }
   ]
@@ -49,8 +47,8 @@ var menu = [{
   submenu: [
     {
       label: 'Show Preview',
-      click: function () {
-        BrowserWindow.getFocusedWindow().webContents.send('show-preview')
+      click: function (menuItem, focusedWindow) {
+        focusedWindow.webContents.send('show-preview')
       }
     }
   ]
@@ -84,7 +82,7 @@ let devMenu = {
     }
   ]
 }
-
+// TODO: make it appears only on development
 menu.push(devMenu)
 
 module.exports = menu;
