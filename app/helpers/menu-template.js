@@ -50,8 +50,42 @@ var menu = [{
       click: function (menuItem, focusedWindow) {
         focusedWindow.webContents.send('show-preview')
       }
+    },
+    {
+      type: 'separator'
+    },
+    {
+      role: 'undo'
+    },
+    {
+      role: 'redo'
+    },
+    {
+      type: 'separator'
+    },
+    {
+      role: 'cut'
+    },
+    {
+      role: 'copy'
+    },
+    {
+      role: 'paste'
+    },
+    {
+      role: 'pasteandmatchstyle'
+    },
+    {
+      role: 'delete'
+    },
+    {
+      role: 'selectall'
     }
   ]
+},
+{
+  label: 'About',
+  click: () => require('electron').shell.openExternal('https://github.com/mathocosta/appa/blob/master/README.md')
 }];
 
 /**
