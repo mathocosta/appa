@@ -3,7 +3,7 @@
   "productName": "Appa",
   "version": "0.0.6",
   "description": "",
-  "main": "main.js",
+  "main": "./app/main.js",
   "scripts": {
     "compile-sass": "gulp",
     "start": "electron ."
