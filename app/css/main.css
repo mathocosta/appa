@@ -1,4 +1,5 @@
 @import url(bulma.css);
+@import url(github-markdown.css);
 @font-face {
   font-family: Roboto;
   src: url("./fonts/roboto-regular.woff");
@@ -20,4 +21,4 @@ textarea {
   height: 100%; }
 
 code {
-  font-family: Code New Roman, monospace; }
+  font-family: Code New Roman; }

@@ -52,6 +52,11 @@ var menu = [{
       }
     },
     {
+      label: 'GitHub Style',
+      type: 'checkbox',
+      click: (menuItem) => global.githubStyle = menuItem.checked
+    },
+    {
       type: 'separator'
     },
     {

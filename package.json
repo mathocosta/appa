@@ -1,7 +1,7 @@
 {
   "name": "appa",
   "productName": "Appa",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "./app/main.js",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "bulma": "^0.1.0",
+    "github-markdown-css": "^2.4.0",
     "marked": "^0.3.5"
   }
 }
