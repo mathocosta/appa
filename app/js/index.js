@@ -2,17 +2,12 @@
 
 const { ipcRenderer } = require('electron')
 
-/* -- Funcionamento do editor -- */
+// Funcionamento do editor
 let editor = document.querySelector('#editor')
 let output = document.querySelector('#output')
 let textarea = editor.getElementsByTagName('textarea')[0]
 
-// placing the markdown filter
-// textarea.addEventListener('input', function () {
-//   output.innerHTML = marked(this.value)
-// })
-
-// enable tab key in textarea
+// Enable tab key in textarea
 textarea.addEventListener('keydown', function (ev) {
   let key = ev.keyCode || ev.which
 
@@ -31,26 +26,24 @@ textarea.addEventListener('keydown', function (ev) {
   }
 
 })
-/* --/ Funcionamento do editor -- */
 
-ipcRenderer.on('salvar-como', function (ev) {
+ipcRenderer.on('salvar-como', (ev) => {
   let text = textarea.value
   ipcRenderer.send('salvar-novo', text)
 })
 
-ipcRenderer.on('salvar', function (ev) {
+ipcRenderer.on('salvar', (ev) => {
   let text = textarea.value
   ipcRenderer.send('salvar-existente', text)
 })
 
-ipcRenderer.on('arquivo-aberto', function (ev, path, data) {
+ipcRenderer.on('arquivo-aberto', (ev, path, data) => {
   textarea.value = data
-  // output.innerHTML = marked(data)
   ipcRenderer.send('atualizar-globalPath', path)
 })
 
 // Config to show the Markdown Preview
-ipcRenderer.on('show-preview', function (ev) {
+ipcRenderer.on('show-preview', (ev) => {
   let data = textarea.value
   ipcRenderer.send('open-preview', data)
 })
