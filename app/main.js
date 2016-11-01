@@ -1,14 +1,15 @@
 const electron = require('electron')
-const {app, BrowserWindow, Menu, dialog, ipcMain} = electron
+const { app, BrowserWindow, Menu, dialog, ipcMain } = electron
 const fs = require('fs')
 const menu = require('./helpers/menu-template.js')
 
-let globalPath;
+let globalPath
+let win
 
 app.on('ready', () => {
   Menu.setApplicationMenu(Menu.buildFromTemplate(menu))
 
-  let win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600
   })
@@ -19,12 +20,12 @@ app.on('ready', () => {
 
 app.on('window-all-close', () => app.quit())
 
-// TODO: needs a refactoring
+// FIXME: needs a refactoring
 ipcMain.on('salvar-novo', (ev, data) => {
   dialog.showSaveDialog({
     filters: [
-      {name: 'text', extensions: ['txt']},
-      {name: 'markdown', extensions: ['md']}
+      { name: 'text', extensions: ['txt'] },
+      { name: 'markdown', extensions: ['md'] }
     ]
   }, (fileName) => {
     if (fileName) {
@@ -56,10 +57,11 @@ ipcMain.on('open-preview', (ev, data) => {
 })
 
 /**
- * Write File
- * Function to create or update the file according to path
- * @param path
- * @param data = contents of the file
+ * function to write the file
+ * when save
+ *
+ * @param {any} path
+ * @param {any} data
  */
 function writeFile (path, data) {
   fs.writeFile(path, data, (err) => {

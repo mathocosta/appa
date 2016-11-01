@@ -1,4 +1,4 @@
-const {app, BrowserWindow, dialog} = require('electron')
+const { app, BrowserWindow, dialog } = require('electron')
 const fs = require('fs')
 
 var menu = [{
@@ -50,40 +50,29 @@ var menu = [{
       click: function (menuItem, focusedWindow) {
         focusedWindow.webContents.send('show-preview')
       }
-    },
-    {
+    },{
       label: 'GitHub Style',
       type: 'checkbox',
       click: (menuItem) => global.githubStyle = menuItem.checked
-    },
-    {
+    },{
       type: 'separator'
-    },
-    {
+    },{
       role: 'undo'
-    },
-    {
+    },{
       role: 'redo'
-    },
-    {
+    },{
       type: 'separator'
-    },
-    {
+    },{
       role: 'cut'
-    },
-    {
+    },{
       role: 'copy'
-    },
-    {
+    },{
       role: 'paste'
-    },
-    {
+    },{
       role: 'pasteandmatchstyle'
-    },
-    {
+    },{
       role: 'delete'
-    },
-    {
+    },{
       role: 'selectall'
     }
   ]
@@ -106,15 +95,13 @@ let devMenu = {
       click: function (item, focusedWindow) {
         if (focusedWindow) focusedWindow.reload()
       }
-    },
-    {
+    },{
       label: 'Dev Tools',
       accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
       click: function (item, focusedWindow) {
         if (focusedWindow) focusedWindow.webContents.toggleDevTools()
       }
-    },
-    {
+    },{
       label: 'Quit',
       accelerator: 'CmdOrCtrl+Q',
       click: () => app.quit()
@@ -122,6 +109,6 @@ let devMenu = {
   ]
 }
 // TODO: make it appears only on development
-menu.push(devMenu)
+menu = menu.concat(devMenu)
 
-module.exports = menu;
+module.exports = menu

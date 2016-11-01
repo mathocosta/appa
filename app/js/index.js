@@ -1,6 +1,6 @@
 'use strict'
 
-const {ipcRenderer} = require('electron')
+const { ipcRenderer } = require('electron')
 
 /* -- Funcionamento do editor -- */
 let editor = document.querySelector('#editor')
