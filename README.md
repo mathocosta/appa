@@ -1,3 +1,4 @@
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 # Appa [work in progress]
 
 Desktop app to write and edit yours `.txt` or `.md`.
