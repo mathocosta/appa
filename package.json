@@ -6,7 +6,7 @@
   "main": "./app/main.js",
   "scripts": {
     "compile-sass": "gulp",
-    "start": "electron ."
+    "start": "\"npm run compile-sass\" && electron ."
   },
   "author": "Matheus Costa <matheusoliveiracos@gmail.com>",
   "license": "ISC",
