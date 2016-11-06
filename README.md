@@ -8,7 +8,7 @@ Desktop app to write and edit yours `.txt` or `.md`.
 
 ## Development
 
-1. `git clone`
+1. clone the repo
 2. `npm install`
 3. `npm start`
 
