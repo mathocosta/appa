@@ -1,5 +1,12 @@
-const { app, BrowserWindow, dialog } = require('electron')
 const fs = require('fs')
+
+const { app,
+        BrowserWindow,
+        dialog
+      } = require('electron')
+
+const Config = require('electron-config')
+const config = new Config()
 
 var menu = [{
   label: 'File',
@@ -53,7 +60,12 @@ var menu = [{
     },{
       label: 'GitHub Style',
       type: 'checkbox',
-      click: (menuItem) => global.githubStyle = menuItem.checked
+      id: '2',
+      click: (menuItem) => {
+        global.githubStyle = menuItem.checked
+        // seta o 'githubStyle'
+        config.set('githubStyle', menuItem.checked)
+      }
     },{
       type: 'separator'
     },{

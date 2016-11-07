@@ -1,13 +1,24 @@
-const electron = require('electron')
-const { app, BrowserWindow, Menu, dialog, ipcMain } = electron
 const fs = require('fs')
-const menu = require('./helpers/menu-template.js')
+
+const { app,
+        BrowserWindow,
+        Menu,
+        dialog,
+        ipcMain
+      } = require('electron')
+
+const Config = require('electron-config')
+const config = new Config(require('./helpers/config-defaults.js'))
+
+const menuTemplate = require('./helpers/menu-template.js')
+
 
 let globalPath
 let win
 
 app.on('ready', () => {
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menu))
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate))
+  lastMenuConfig(Menu)
 
   win = new BrowserWindow({
     width: 800,
@@ -20,6 +31,11 @@ app.on('ready', () => {
 
 app.on('window-all-close', () => app.quit())
 
+
+
+/**
+ * All the ipc configuration
+ */
 // FIXME: needs a refactoring
 ipcMain.on('salvar-novo', (ev, data) => {
   dialog.showSaveDialog({
@@ -57,14 +73,29 @@ ipcMain.on('open-preview', (ev, data) => {
 })
 
 /**
+ * Functions
+ */
+
+/**
  * function to write the file
  * when save
  *
- * @param {any} path
- * @param {any} data
+ * @param {String} path
+ * @param {String} data
  */
 function writeFile (path, data) {
   fs.writeFile(path, data, (err) => {
     if (err) throw err
   })
+}
+
+/**
+ * function to initialize the settings menu
+ * to the last time the app was used
+ *
+ * @param {Object} menu
+ */
+function lastMenuConfig (menu) {
+  console.log(`getting the config in ${app.getPath('userData')}`)
+  menu.getApplicationMenu().items[1].submenu.items[1].checked = config.get('githubStyle') || false
 }
