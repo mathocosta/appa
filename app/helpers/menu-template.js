@@ -62,8 +62,6 @@ var menu = [{
       type: 'checkbox',
       id: '2',
       click: (menuItem) => {
-        global.githubStyle = menuItem.checked
-        // seta o 'githubStyle'
         config.set('githubStyle', menuItem.checked)
       }
     },{
